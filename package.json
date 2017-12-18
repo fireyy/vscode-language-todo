@@ -4,14 +4,20 @@
     "description": "Todo syntaxes for VSCode",
     "version": "1.0.0",
     "publisher": "fireyy",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/fireyy/vscode-language-todo.git"
+    },
     "engines": {
         "vscode": "^1.19.0"
     },
     "categories": [
-        "Languages"
+        "Languages",
+        "Snippets"
     ],
     "scripts": {
-        "update-grammar": "node ./build/update-grammar.js atom/language-todo grammars/todo.cson ./syntaxes/todo.json"
+        "update-grammar": "node ./build/update-grammar.js atom/language-todo grammars/todo.cson ./syntaxes/todo.json",
+        "update-snippet": "node ./build/update-grammar.js atom/language-todo snippets/todo.cson ./snippets/todo.json"
     },
     "contributes": {
         "languages": [
@@ -21,22 +27,45 @@
                     "TODO",
                     "todo"
                 ],
-                "extensions": [],
+                "extensions": [".todo"],
                 "configuration": "./language-configuration.json"
             }
         ],
         "grammars": [
             {
+                "scopeName": "text.todo",
                 "injectTo": [
                     "text.html.basic",
                     "text.html.markdown",
+                    "text.html.php",
                     "source.css",
                     "source.js",
                     "source.ts",
                     "source.tsx"
                 ],
-                "scopeName": "text.todo",
                 "path": "./syntaxes/todo.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "html",
+                "path": "./snippets/html.json"
+            },
+            {
+                "language": "javascriptreact",
+                "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "javascript",
+                "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "typescript",
+                "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "typescriptreact",
+                "path": "./snippets/snippets.json"
             }
         ]
     },
