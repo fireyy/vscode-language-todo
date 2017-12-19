@@ -2,7 +2,7 @@
     "name": "vscode-language-todo",
     "displayName": "vscode-language-todo",
     "description": "Todo syntaxes for VSCode",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "publisher": "fireyy",
     "repository": {
         "type": "git",
@@ -65,7 +65,7 @@
             {
                 "language": "vue-html",
                 "path": "./snippets/html.json"
-            },            
+            },
             {
                 "language": "markdown",
                 "path": "./snippets/html.json"
@@ -76,7 +76,7 @@
             },
             {
                 "language": "jsx-tags",
-                "path": "./snippets/html.json"
+                "path": "./snippets/jsx.json"
             },
             {
                 "language": "javascript",
