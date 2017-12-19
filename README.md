@@ -31,6 +31,31 @@ To ensure snippet suggestions are always on top in the suggestion list, add the 
 "editor.snippetSuggestions": "top"
 ```
 
+## Customizations
+
+You can tune the syntax highlighting colors using the `editor.tokenColorCustomizations` setting:
+
+```
+"editor.tokenColorCustomizations": {
+    "textMateRules":[
+        {
+            "scope": "storage.type.class.todo",
+            "settings": {
+                "foreground": "#c792ea"
+            }
+        },
+        {
+            "scope": "storage.type.class.fixme",
+            "settings": {
+                "foreground": "#ff0000"
+            }
+        }
+    ]
+}
+```
+
+Rules syntax `scope` will be `storage.type.class.todo` / `storage.type.class.fixme` / `storage.type.class.changed` ...
+
 ## Known Issues
 
 - [x] Snippet not work in markdown
