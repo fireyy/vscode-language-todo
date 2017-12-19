@@ -2,7 +2,7 @@
     "name": "vscode-language-todo",
     "displayName": "vscode-language-todo",
     "description": "Todo syntaxes for VSCode",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "publisher": "fireyy",
     "repository": {
         "type": "git",
@@ -87,7 +87,7 @@
             {
                 "language": "less",
                 "path": "./snippets/snippets.json"
-            },            
+            },
             {
                 "language": "php",
                 "path": "./snippets/snippets.json"
@@ -95,7 +95,7 @@
             {
                 "language": "go",
                 "path": "./snippets/snippets.json"
-            },            
+            },
             {
                 "language": "python",
                 "path": "./snippets/python.json"
