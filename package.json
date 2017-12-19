@@ -46,6 +46,7 @@
                     "source.scss",
                     "source.css.less",
                     "source.js",
+                    "source.js.jsx",
                     "source.ts",
                     "source.tsx",
                     "source.ruby",

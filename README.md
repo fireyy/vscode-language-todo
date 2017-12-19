@@ -10,6 +10,7 @@ Originally converted from [atom/language-todo](https://github.com/atom/language-
 - CSS
 - HTML
 - Markdown (snippet not work now)
+- jsx (snippet bugly in render section)
 - TypeScript
 - CoffeeScript
 - Ruby
@@ -24,3 +25,4 @@ Originally converted from [atom/language-todo](https://github.com/atom/language-
 
 - [ ] Snippet not work in markdown
 - [ ] Syntaxes not work in `.vue`
+- [ ] snippet bugly in `.jsx` render section
