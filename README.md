@@ -18,8 +18,9 @@ Originally converted from [atom/language-todo](https://github.com/atom/language-
 - Go
 - SASS (only .scss)
 - Less
-- Vue (Bugly now, see below)
+- Vue (syntaxes not work now)
 
 ## Known Issues
 
-In `.vue` template section, snippet not work now.
+- [ ] Snippet not work in markdown
+- [ ] Syntaxes not work in `.vue`
