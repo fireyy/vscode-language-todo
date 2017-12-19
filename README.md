@@ -9,5 +9,17 @@ Originally converted from [atom/language-todo](https://github.com/atom/language-
 - JavaScript
 - CSS
 - HTML
-- Markdown
+- Markdown (snippet not work now)
 - TypeScript
+- CoffeeScript
+- Ruby
+- Python
+- PHP
+- Go
+- SASS (only .scss)
+- Less
+- Vue (Bugly now, see below)
+
+## Known Issues
+
+In `.vue` template section, snippet not work now.

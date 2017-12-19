@@ -39,11 +39,18 @@
                 "injectTo": [
                     "text.html.basic",
                     "text.html.markdown",
+                    "text.html.vue",
                     "text.html.php",
                     "source.css",
+                    "source.css.scss",
+                    "source.css.less",
                     "source.js",
                     "source.ts",
-                    "source.tsx"
+                    "source.tsx",
+                    "source.ruby",
+                    "source.python",
+                    "source.coffee",
+                    "source.go"
                 ],
                 "path": "./syntaxes/todo.json"
             }
@@ -51,6 +58,10 @@
         "snippets": [
             {
                 "language": "html",
+                "path": "./snippets/html.json"
+            },
+            {
+                "language": "markdown",
                 "path": "./snippets/html.json"
             },
             {
@@ -68,6 +79,38 @@
             {
                 "language": "typescriptreact",
                 "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "scss",
+                "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "less",
+                "path": "./snippets/snippets.json"
+            },            
+            {
+                "language": "php",
+                "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "go",
+                "path": "./snippets/snippets.json"
+            },            
+            {
+                "language": "python",
+                "path": "./snippets/python.json"
+            },
+            {
+                "language": "ruby",
+                "path": "./snippets/python.json"
+            },
+            {
+                "language": "coffeescript",
+                "path": "./snippets/python.json"
+            },
+            {
+                "language": "css",
+                "path": "./snippets/css.json"
             }
         ]
     },
