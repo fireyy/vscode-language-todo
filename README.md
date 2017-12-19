@@ -19,10 +19,10 @@ Originally converted from [atom/language-todo](https://github.com/atom/language-
 - Go
 - SASS (only .scss)
 - Less
-- Vue (syntaxes not work now)
+- Vue
 
 ## Known Issues
 
 - [ ] Snippet not work in markdown
-- [ ] Syntaxes not work in `.vue`
+- [x] Syntaxes not work in `.vue`
 - [ ] snippet bugly in `.jsx` render section

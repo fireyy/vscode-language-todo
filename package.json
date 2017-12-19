@@ -39,7 +39,6 @@
                 "injectTo": [
                     "text.html.basic",
                     "text.html.markdown",
-                    "text.html.vue",
                     "text.html.php",
                     "source.css",
                     "source.css.scss",
@@ -52,7 +51,8 @@
                     "source.ruby",
                     "source.python",
                     "source.coffee",
-                    "source.go"
+                    "source.go",
+                    "source.vue"
                 ],
                 "path": "./syntaxes/todo.json"
             }
@@ -73,6 +73,10 @@
             {
                 "language": "javascriptreact",
                 "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "jsx-tags",
+                "path": "./snippets/html.json"
             },
             {
                 "language": "javascript",
