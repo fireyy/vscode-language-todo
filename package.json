@@ -19,22 +19,31 @@
         "update-grammar": "node ./build/update-grammar.js atom/language-todo grammars/todo.cson ./syntaxes/todo.json",
         "update-snippet": "node ./build/update-grammar.js atom/language-todo snippets/todo.cson ./snippets/todo.json"
     },
+    "activationEvents": [
+        "onCommand:vltodo.search"
+    ],
+    "main": "./src/extension",
     "contributes": {
+        "commands": [{
+            "command": "vltodo.search",
+            "title": "List All TODOs"
+        }],
         "languages": [
             {
-                "id": "todo",
+                "id": "vltodo",
                 "aliases": [
                     "TODO",
                     "todo"
                 ],
                 "extensions": [
-                    ".todo"
+                    ".vltodo"
                 ],
                 "configuration": "./language-configuration.json"
             }
         ],
         "grammars": [
             {
+                "language": "vltodo",
                 "scopeName": "text.todo",
                 "injectTo": [
                     "text.html.basic",
@@ -127,5 +136,8 @@
     "devDependencies": {
         "cson-parser": "^1.3.3",
         "vsce": "^1.35.0"
+    },
+    "dependencies": {
+        "vscode-ripgrep": "^0.6.0-patch.0.5"
     }
 }
