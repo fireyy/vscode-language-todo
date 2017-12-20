@@ -1,10 +1,18 @@
 # vscode-language-todo
 
-Adds syntax highlighting to `TODO, FIXME, CHANGED, XXX, IDEA, HACK, NOTE, REVIEW, NB, BUG, QUESTION, COMBAK, TEMP, DEBUG and OPTIMIZE` in comments and text in VSCode.
+Add TODO support in VS Code.
 
-Originally converted from [atom/language-todo](https://github.com/atom/language-todo).
+> Syntaxes converted from [atom/language-todo](https://github.com/atom/language-todo).
 
-## Support file type
+![demo](demo.gif)
+
+## Feature
+
+- Adds syntax highlighting to `TODO, FIXME, CHANGED, XXX, IDEA, HACK, NOTE, REVIEW, NB, BUG, QUESTION, COMBAK, TEMP, DEBUG and OPTIMIZE` in comments and text in [Support file](#support-files).
+- List All TODOs in current workspace.
+- Snippets [#see](#snippets)
+
+## Support files
 
 - JavaScript
 - CSS
@@ -30,6 +38,13 @@ To ensure snippet suggestions are always on top in the suggestion list, add the 
 ```json
 "editor.snippetSuggestions": "top"
 ```
+
+## Commands
+
+Using Command Palette (CMD/CTRL + Shift + P)
+
+- `vltodo.search`(List All TODOs)
+
 
 ## Customizations
 
