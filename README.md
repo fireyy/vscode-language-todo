@@ -45,6 +45,38 @@ Using Command Palette (CMD/CTRL + Shift + P)
 
 - `vltodo.search`(List All TODOs)
 
+## Configuration
+
+The extension can be customised as follows:
+
+```json
+"vscode-language-todo": {
+    "regex": "(//|#|<!--|;|/*)\\s*(TODO|FIXME)", // the regex to find TODOs for ripgrep, This is a `Rust regular expression`
+    "rootFolder": "", // The search starts in your workspace folder
+    "globs": [ // A list of globs, the files which are searched
+        "!**/node_modules/**",
+        "!**/bower_components/**",
+        "!**/.vscode/**",
+        "!**/.github/**",
+        "!**/.git/**",
+        "!**/*.map"
+    ]
+}
+```
+
+`vscode-language-todo.regex`
+
+By default, the regex to find TODOs is fairly simple - it searches for `TODO` or `FIXME` in coments starting with `//`, `#`, `;` or `<--`
+
+If you want to refine it, just modify this regex. Note: This is a <a href="https://doc.rust-lang.org/regex/regex/index.html>">Rust regular expression</a>, not javascript.
+
+`vscode-language-todo.rootFolder`
+
+The search starts in your workspace folder. Change this if you want to start somewhere else.
+
+`vscode-language-todo.globs`
+
+If you want to modify the files which are searched, you can define a list of <a href="https://www.npmjs.com/package/glob">globs</a>. 
 
 ## Customizations
 

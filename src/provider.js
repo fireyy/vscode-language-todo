@@ -164,7 +164,7 @@ function runCommandSync() {
 
   let ignoreStr = ''
   ignoreStr = globs.reduce((str, glob) => {
-    return `${str} -g "!${glob}"`
+    return `${str} -g "${glob}"`
   }, ignoreStr)
   
   return execSync(`${rgPath} --case-sensitive --line-number --column --hidden -e "${regex}" ${ignoreStr}`, execOpts)
