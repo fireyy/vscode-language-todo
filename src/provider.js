@@ -5,7 +5,20 @@ const {
   execSync
 } = require('child_process')
 
-const rootPath = vscode.workspace.rootPath
+function getRootFolder () {
+    var rootFolder = vscode.workspace.getConfiguration('vscode-language-todo').rootFolder;
+    if( rootFolder === "" )
+    {
+        if( vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0 )
+        {
+            rootFolder = vscode.workspace.workspaceFolders[ 0 ].uri.fsPath;
+        }
+    }
+    return rootFolder;
+}
+
+// const rootPath = vscode.workspace.rootPath
+const rootPath = getRootFolder()
 
 const execOpts = {
   cwd: rootPath,
@@ -134,10 +147,9 @@ function openLink(fileName, line) {
 }
 
 function runCommandSync() {
-  // (//|#|<--|;)\\s*(TODO|FIXME)
-  let cmd = "(//|#|<!--|;|/\*)\\s*(TODO|FIXME|CHANGED|XXX|IDEA|HACK|NOTE|REVIEW|NB|BUG|QUESTION|COMBAK|TEMP|DEBUG|OPTIMIZE)"
+  let regex = vscode.workspace.getConfiguration('vscode-language-todo').regex
 
-  let globs = [
+  let globsDefault = [
     "**/node_modules/**",
     "**/bower_components/**",
     "**/.vscode/**",
@@ -146,10 +158,14 @@ function runCommandSync() {
     "**/*.map"
   ]
 
+  let globs = vscode.workspace.getConfiguration('vscode-language-todo').globs
+
+  globs = globsDefault.concat(globs)
+
   let ignoreStr = ''
   ignoreStr = globs.reduce((str, glob) => {
     return `${str} -g "!${glob}"`
   }, ignoreStr)
   
-  return execSync(`${rgPath} --case-sensitive --line-number --column --hidden -e "${cmd}" ${ignoreStr}`, execOpts)
+  return execSync(`${rgPath} --case-sensitive --line-number --column --hidden -e "${regex}" ${ignoreStr}`, execOpts)
 }

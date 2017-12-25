@@ -134,7 +134,28 @@
                 "language": "css",
                 "path": "./snippets/css.json"
             }
-        ]
+        ],
+        "configuration": {
+			"type": "object",
+			"title": "vscode-language-todo configuration",
+			"properties": {
+				"vscode-language-todo.regex": {
+					"type": "string",
+					"description": "Regular expression for matching TODOs",
+					"default": "(//|#|<!--|;|/\\*)\\s*(TODO|FIXME|CHANGED|XXX|IDEA|HACK|NOTE|REVIEW|NB|BUG|QUESTION|COMBAK|TEMP|DEBUG|OPTIMIZE)"
+				},
+				"vscode-language-todo.rootFolder": {
+					"type": "string",
+					"description": "Folder in which to run the search (defaults to the workspace folder)",
+					"default": ""
+				},
+				"vscode-language-todo.globs": {
+					"type": "array",
+					"description": "Globs for use in limiting search results, e.g. [\"node_modules/**\"]",
+					"default": []
+                }
+            }
+        }
     },
     "devDependencies": {
         "cson-parser": "^1.3.3",
