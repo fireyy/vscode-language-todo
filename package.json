@@ -2,7 +2,7 @@
     "name": "vscode-language-todo",
     "displayName": "vscode-language-todo",
     "description": "Todo syntaxes for VSCode",
-    "version": "1.0.4",
+    "version": "1.1.0",
     "publisher": "fireyy",
     "repository": {
         "type": "git",
@@ -22,12 +22,15 @@
     "activationEvents": [
         "onCommand:vltodo.search"
     ],
+    "icon": "./icon.png",
     "main": "./src/extension",
     "contributes": {
-        "commands": [{
-            "command": "vltodo.search",
-            "title": "List All TODOs"
-        }],
+        "commands": [
+            {
+                "command": "vltodo.search",
+                "title": "List All TODOs"
+            }
+        ],
         "languages": [
             {
                 "id": "vltodo",

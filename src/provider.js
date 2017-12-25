@@ -136,6 +136,20 @@ function openLink(fileName, line) {
 function runCommandSync() {
   // (//|#|<--|;)\\s*(TODO|FIXME)
   let cmd = "(//|#|<!--|;|/\*)\\s*(TODO|FIXME|CHANGED|XXX|IDEA|HACK|NOTE|REVIEW|NB|BUG|QUESTION|COMBAK|TEMP|DEBUG|OPTIMIZE)"
+
+  let globs = [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/.vscode/**",
+    "**/.github/**",
+    "**/.git/**",
+    "**/*.map"
+  ]
+
+  let ignoreStr = ''
+  ignoreStr = globs.reduce((str, glob) => {
+    return `${str} -g "!${glob}"`
+  }, ignoreStr)
   
-  return execSync(`${rgPath} --case-sensitive --line-number --column --hidden -e "${cmd}"`, execOpts)
+  return execSync(`${rgPath} --case-sensitive --line-number --column --hidden -e "${cmd}" ${ignoreStr}`, execOpts)
 }
