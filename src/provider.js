@@ -150,12 +150,12 @@ function runCommandSync() {
   let regex = vscode.workspace.getConfiguration('vscode-language-todo').regex
 
   let globsDefault = [
-    "**/node_modules/**",
-    "**/bower_components/**",
-    "**/.vscode/**",
-    "**/.github/**",
-    "**/.git/**",
-    "**/*.map"
+    "!**/node_modules/**",
+    "!**/bower_components/**",
+    "!**/.vscode/**",
+    "!**/.github/**",
+    "!**/.git/**",
+    "!**/*.map"
   ]
 
   let globs = vscode.workspace.getConfiguration('vscode-language-todo').globs
