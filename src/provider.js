@@ -167,5 +167,5 @@ function runCommandSync() {
     return `${str} -g "${glob}"`
   }, ignoreStr)
   
-  return execSync(`${rgPath} --case-sensitive --line-number --column --hidden -e "${regex}" ${ignoreStr}`, execOpts)
+  return execSync(`"${rgPath}" --case-sensitive --line-number --column --hidden -e "${regex}" ${ignoreStr}`, execOpts)
 }
