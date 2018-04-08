@@ -2,7 +2,7 @@
     "name": "vscode-language-todo",
     "displayName": "vscode-language-todo",
     "description": "Todo syntaxes for VSCode",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "publisher": "fireyy",
     "repository": {
         "type": "git",
@@ -162,6 +162,6 @@
         "vsce": "^1.35.0"
     },
     "dependencies": {
-        "vscode-ripgrep": "^0.6.0-patch.0.5"
+        "vscode-ripgrep": "^1.0.0"
     }
 }
