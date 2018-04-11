@@ -25,6 +25,9 @@ const execOpts = {
   maxBuffer: 1024 * 1000
 }
 
+// If vscode-ripgrep is in an .asar file, then the binary is unpacked.
+const rgDiskPath = rgPath.replace(/\bnode_modules\.asar\b/, 'node_modules.asar.unpacked');
+
 class vltodoProvider {
   constructor() {
     this.links = []
@@ -167,5 +170,5 @@ function runCommandSync() {
     return `${str} -g "${glob}"`
   }, ignoreStr)
   
-  return execSync(`"${rgPath}" --case-sensitive --line-number --column --hidden -e "${regex}" ${ignoreStr}`, execOpts)
+  return execSync(`"${rgDiskPath}" --case-sensitive --line-number --column --hidden -e "${regex}" ${ignoreStr}`, execOpts)
 }
