@@ -54,7 +54,7 @@ function activate(context) {
   const disposable = commands.registerCommand('vltodo.search', function () {
     const path = workspace.rootPath
     var uri = Uri.parse(vltodoProvider.scheme +
-      `:result.vltodo?path=${path}`)
+      `:result.vltodo?path=${path}&t=${new Date().getTime()}`)
     return workspace.openTextDocument(uri).then(doc =>
       window.showTextDocument(doc, {
         preview: false,
