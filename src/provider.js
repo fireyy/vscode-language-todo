@@ -1,6 +1,7 @@
 const vscode = require('vscode')
 const querystring = require('querystring')
 var ripgrep = require('./ripgrep')
+var path = require('path')
 const {
   execSync
 } = require('child_process')
@@ -19,6 +20,16 @@ function getRootFolder () {
 
 // const rootPath = vscode.workspace.rootPath
 let rootPath = getRootFolder()
+
+function getClickLink (fileName) {
+  let link = path.join(rootPath, fileName)
+  if (/^win/.test( process.platform )) {
+    link = 'file:///' + link
+  } else {
+    link = 'file://' + link
+  }
+  return link
+}
 
 class vltodoProvider {
   constructor(opts) {
@@ -76,7 +87,7 @@ class vltodoProvider {
         }).join('\n')
         lineNumber += 1
         return `
-file://${rootPath}/${fileName}
+${getClickLink(fileName)}
 ${resultsForFile}`
       })
       let header = [`${resultsArray.length} search results found`]
@@ -114,7 +125,7 @@ ${resultsForFile}`
       lineNumber,
       preamble
     )
-    const uri = vscode.Uri.parse(`file://${rootPath}/${file}#${line}`)
+    const uri = vscode.Uri.parse(`${getClickLink(file)}#${line}`)
     this.links[docURI].push(new vscode.DocumentLink(linkRange, uri))
   }
 }
