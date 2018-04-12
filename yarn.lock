@@ -351,10 +351,6 @@ vsce@^1.35.0:
     yauzl "^2.3.1"
     yazl "^2.2.2"
 
-vscode-ripgrep@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/vscode-ripgrep/-/vscode-ripgrep-1.0.0.tgz#99d81e96cc2437a1bc20f28facbcca72516e9c73"
-
 vso-node-api@^6.1.2-preview:
   version "6.1.2-preview"
   resolved "https://registry.yarnpkg.com/vso-node-api/-/vso-node-api-6.1.2-preview.tgz#aab3546df2451ecd894e071bb99b5df19c5fa78f"

@@ -1,6 +1,6 @@
 const vscode = require('vscode')
 const querystring = require('querystring')
-const rgPath = require('vscode-ripgrep').rgPath
+var ripgrep = require('./ripgrep')
 const {
   execSync
 } = require('child_process')
@@ -18,18 +18,11 @@ function getRootFolder () {
 }
 
 // const rootPath = vscode.workspace.rootPath
-const rootPath = getRootFolder()
-
-const execOpts = {
-  cwd: rootPath,
-  maxBuffer: 1024 * 1000
-}
-
-// If vscode-ripgrep is in an .asar file, then the binary is unpacked.
-const rgDiskPath = rgPath.replace(/\bnode_modules\.asar\b/, 'node_modules.asar.unpacked');
+let rootPath = getRootFolder()
 
 class vltodoProvider {
-  constructor() {
+  constructor(opts) {
+    this.options = opts || {}
     this.links = []
     this._subscriptions = vscode.workspace.onDidCloseTextDocument(doc => {
       this.links[doc.uri.toString()] = []
@@ -50,57 +43,53 @@ class vltodoProvider {
     let uriString = uri.toString()
     this.links[uriString] = []
     const params = querystring.parse(uri.query)
-    if (params.path) execOpts.cwd = params.path
+    if (params.path) rootPath = params.path
 
-    let searchResults = null
-    try {
-      searchResults = runCommandSync()
-    } catch (err) {
-      return `${err}`
-    }
-
-    if (searchResults == null || !searchResults.length) {
-      return 'There was an error during your search!'
-    }
-
-    let resultsArray = searchResults.toString().split('\n')
-    resultsArray = resultsArray.filter((item) => {
-      return item != null && item.length > 0
-    })
-    let resultsByFile = {}
-
-    resultsArray.forEach((searchResult) => {
-      let splitLine = searchResult.split(/([^:]+):([^:]+):([^:]+):(.+)/)
-      let fileName = splitLine[1]
-      if (fileName == null || !fileName.length) {
-        return
+    return runCommandSync(this.options.rgPath).then((resultsArray) => {
+      console.log('resultsArray', resultsArray)
+      if (resultsArray == null || !resultsArray.length) {
+        return 'There was an error during your search!'
       }
-      if (resultsByFile[fileName] == null) {
-        resultsByFile[fileName] = []
-      }
-      const formattedLine = formatLine(splitLine)
-      resultsByFile[fileName].push(formattedLine)
-    })
-
-    let sortedFiles = Object.keys(resultsByFile).sort()
-    let lineNumber = 1
-
-    let lines = sortedFiles.map((fileName) => {
-      lineNumber += 1
-      let resultsForFile = resultsByFile[fileName].map((searchResult, index) => {
+  
+      let resultsByFile = {}
+  
+      resultsArray.forEach((searchResult) => {
+        let fileName = searchResult.file
+        if (fileName == null || !fileName.length) {
+          return
+        }
+        if (resultsByFile[fileName] == null) {
+          resultsByFile[fileName] = []
+        }
+        resultsByFile[fileName].push(searchResult)
+      })
+  
+      let sortedFiles = Object.keys(resultsByFile).sort()
+      let lineNumber = 1
+  
+      let lines = sortedFiles.map((fileName) => {
         lineNumber += 1
-        this.createDocumentLink(searchResult, lineNumber, uriString)
-        return `  ${searchResult.line}: ${searchResult.result}`
-      }).join('\n')
-      lineNumber += 1
-      return `
+        let resultsForFile = resultsByFile[fileName].map((searchResult, index) => {
+          lineNumber += 1
+          this.createDocumentLink(searchResult, lineNumber, uriString)
+          return `  ${searchResult.line}: ${searchResult.match}`
+        }).join('\n')
+        lineNumber += 1
+        return `
 file://${rootPath}/${fileName}
 ${resultsForFile}`
+      })
+      let header = [`${resultsArray.length} search results found`]
+      let content = header.concat(lines)
+  
+      return content.join('\n')
+    }).catch((e) => {
+      if(e.error) {
+        vscode.window.showErrorMessage( "vscode-language-todo: " + e.error )
+      } else {
+        vscode.window.showErrorMessage( "vscode-language-todo: failed to execute search (" + e.stderr + ")" )
+      }
     })
-    let header = [`${resultsArray.length} search results found`]
-    let content = header.concat(lines)
-
-    return content.join('\n')
   }
 
   provideDocumentLinks(document) {
@@ -149,7 +138,7 @@ function openLink(fileName, line) {
   return encodeURI('command:vltodo.openFile?' + JSON.stringify(params))
 }
 
-function runCommandSync() {
+function runCommandSync(rgPath) {
   let regex = vscode.workspace.getConfiguration('vscode-language-todo').regex
 
   let globsDefault = [
@@ -165,10 +154,12 @@ function runCommandSync() {
 
   globs = globsDefault.concat(globs)
 
-  let ignoreStr = ''
-  ignoreStr = globs.reduce((str, glob) => {
-    return `${str} -g "${glob}"`
-  }, ignoreStr)
+  var options = {
+    regex: "\"" + regex + "\"",
+    rgPath: rgPath,
+    globs: globs
+  }
   
-  return execSync(`"${rgDiskPath}" --case-sensitive --line-number --column --hidden -e "${regex}" ${ignoreStr}`, execOpts)
+  // return execSync(`"${rgDiskPath}" --case-sensitive --line-number --column --hidden -e "${regex}" ${ignoreStr}`, execOpts)
+  return ripgrep( rootPath, options )
 }
