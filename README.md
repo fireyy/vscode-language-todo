@@ -50,7 +50,7 @@ Using Command Palette (CMD/CTRL + Shift + P)
 The extension can be customised as follows:
 
 ```json
-"vscode-language-todo.regex": "(//|#|<!--|;|/*)\\s*(TODO|FIXME)", // the regex to find TODOs for ripgrep, This is a `Rust regular expression`
+"vscode-language-todo.regex": "(//|#|<!--|;|/\\*)\\s*(TODO|FIXME)", // the regex to find TODOs for ripgrep, This is a `Rust regular expression`
 "vscode-language-todo.rootFolder": "", // The search starts in your workspace folder
 "vscode-language-todo.globs": [ // A list of globs, the files which are searched
     "!**/node_modules/**",

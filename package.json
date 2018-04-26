@@ -2,7 +2,7 @@
     "name": "vscode-language-todo",
     "displayName": "vscode-language-todo",
     "description": "Todo syntaxes for VSCode",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "publisher": "fireyy",
     "repository": {
         "type": "git",
@@ -142,7 +142,7 @@
                 "vscode-language-todo.regex": {
                     "type": "string",
                     "description": "Regular expression for matching TODOs",
-                    "default": "(//|#|<!--|;|/*)\\s*(TODO|FIXME|CHANGED|XXX|IDEA|HACK|NOTE|REVIEW|NB|BUG|QUESTION|COMBAK|TEMP|DEBUG|OPTIMIZE)"
+                    "default": "(//|#|<!--|;|/\\*)\\s*(TODO|FIXME|CHANGED|XXX|IDEA|HACK|NOTE|REVIEW|NB|BUG|QUESTION|COMBAK|TEMP|DEBUG|OPTIMIZE)"
                 },
                 "vscode-language-todo.rootFolder": {
                     "type": "string",
