@@ -50,6 +50,7 @@
                 "scopeName": "text.todo",
                 "injectTo": [
                     "text.html.basic",
+                    "text.html.derivative",
                     "text.html.markdown",
                     "text.html.php",
                     "source.css",
