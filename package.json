@@ -2,7 +2,7 @@
     "name": "vscode-language-todo",
     "displayName": "vscode-language-todo",
     "description": "Todo syntaxes for VSCode",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "publisher": "fireyy",
     "repository": {
         "type": "git",
